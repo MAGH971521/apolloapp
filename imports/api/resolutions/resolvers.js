@@ -1,0 +1,37 @@
+import Resolutions from './resolutions';
+
+// Resolutions.insert({
+//   name: "test res"
+// });
+
+// const res=Resolutions.find({}).fetch();//selcionar de la base dato
+// //uno
+// console.log(res);
+
+export default {
+  Query:{
+      resolutions(obj, args, {userId}){
+          // console.log(context);
+          console.log(userId);
+          const res = Resolutions.find({userId}).fetch();
+          console.log(res);
+          return res;
+      }
+  },
+
+  Mutation :{
+    createResolution(obj, {name}, {userId}){
+      // console.log(context);
+      console.log(name);
+      const resolutionsId=Resolutions.insert({  //insertar id
+        name,
+        userId
+      });
+      console.log("somethig");
+      return Resolutions.findOne(resolutionsId);  //consultar
+      //const resolutionsId= Resolutions.insert({
+      //name: "test Res"
+    //});
+    }
+  }
+};
